@@ -43,13 +43,13 @@ node('docker') {
 
 node ('docker_pt') {
 	stage('Start Tomcat') {
-		sh '''cd /home/jenkins/tomcat/bin
+		sh '''cd /home/jenkins/tomcat/bin/apache-tomcat-8.5.11
 		./startup.sh''';
 	}
 	
 	stage('Deploy') {
 		unstash 'binary'
-		sh 'cp target/hello-0.0.1.war /home/jenkins/tomcat/webapp/';
+		sh 'cp target/hello-0.0.1.war /home/jenkins/tomcat/apache-tomcat-8.5.11/webapp/';
 	}
 	
 	stage('Performance Testing') {
